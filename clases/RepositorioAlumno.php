@@ -3,12 +3,12 @@ require_once '.env.php';
 require_once 'clases/Usuario.php';
 require_once 'clases/Alumno.php';
 
-class RepositorioAlumno
-{
+class RepositorioAlumno {
+
     private static $conexion = null;
     
-    public function __construct()
-    {
+    public function __construct(){
+
         if (is_null(self::$conexion)) {
             $credenciales = credenciales();
             self::$conexion = new mysqli(   $credenciales['servidor'],
@@ -23,6 +23,7 @@ class RepositorioAlumno
             self::$conexion->set_charset('utf8'); 
         }
     }
+
 
 
     public function store(Alumno $alumno){
@@ -47,3 +48,4 @@ class RepositorioAlumno
             return false;
         }
     }
+}

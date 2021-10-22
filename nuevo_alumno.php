@@ -1,6 +1,7 @@
 <?php
 require_once 'clases/Usuario.php';
 require_once 'clases/Alumno.php';
+require_once 'clases/RepositorioAlumno.php';
 
 session_start();
 if (isset($_SESSION['usuario'])) {
