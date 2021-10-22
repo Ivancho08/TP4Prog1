@@ -23,7 +23,7 @@ if (isset($_POST['usuario']) && isset($_POST['clave'])) {
     </head>
     <body class="container">
       <div class="jumbotron text-center">
-      <h1>Sistema bancario</h1>
+      <h1>Sistema Alta Alumnos</h1>
       </div>    
       <div class="text-center">
         <h3>Crear nuevo usuario</h3>

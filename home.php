@@ -22,6 +22,7 @@ if (isset($_SESSION['usuario'])) {
       </div>    
       <div class="text-center">
         <h3>Hola <?php echo $nomApe;?></h3>
+        <a class="btn btn-primary" href="nuevo_alumno.php">Crear Nuevo Alumno</a>
         <p><a href="logout.php">Cerrar sesión</a></p>
       </div> 
     </body>
