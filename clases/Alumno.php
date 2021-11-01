@@ -1,7 +1,7 @@
 <?php
 require_once 'clases/Usuario.php';
 
-class Alumno
+class Alumno extends Usuario
 {
     protected $dni;
     protected $nombre;
@@ -9,7 +9,7 @@ class Alumno
     protected $fecha_nac;
     protected $id;
 
-    public function __construct (Usuario $dni, $nombre, $apellido, $fecha_nac, $id = null){
+    public function __construct ($dni, $nombre, $apellido, $fecha_nac, $id = null){
 
         $this->dni = $dni;
         $this->nombre = $nombre;

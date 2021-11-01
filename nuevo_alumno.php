@@ -9,7 +9,7 @@ if (isset($_SESSION['usuario'])) {
     //Crear alumno
     $alumno = new Alumno($_POST['dni'], $_POST['nombre'], $_POST['apellido'], $_POST['fecha_nac']);
     $ra = new RepositorioAlumno();
-    $id = $rc->store($alumno);
+    $id = $ra->store($alumno);
     if($id === false){
         header('Location: home.php?mensaje=Error al crear el Alumno');
     } else {
