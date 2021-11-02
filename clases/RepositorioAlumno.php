@@ -37,7 +37,7 @@ class RepositorioAlumno {
         try{
             $query = self::$conexion->prepare($q);
 
-            $query->bind_param("iiii", $dni, $nombre, $apellido, $fecha_nac);
+            $query->bind_param("isss", $dni, $nombre, $apellido, $fecha_nac);
 
             if ($query->execute()){
                 return self::$conexion->insert_id;

@@ -1,7 +1,7 @@
 <?php
 require_once 'clases/Usuario.php';
 
-class Alumno extends Usuario
+class Alumno
 {
     protected $dni;
     protected $nombre;
@@ -15,6 +15,7 @@ class Alumno extends Usuario
         $this->nombre = $nombre;
         $this->apellido = $apellido;
         $this->fecha_nac = $fecha_nac;
+        $this->id = $id;
     }
 
     public function getDni(){

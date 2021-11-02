@@ -21,6 +21,11 @@ if (isset($_SESSION['usuario'])) {
       <h1>Sistema Alta Alumnos</h1>
       </div>    
       <div class="text-center">
+        <?php
+        if (isset($_GET['mensaje'])) {
+          echo '<p class="alert alert-primary">'.$_GET['mensaje'].'</p>';
+        }
+        ?>
         <h3>Hola <?php echo $nomApe;?></h3>
         <a class="btn btn-primary" href="crear_alumno.php">Crear Nuevo Alumno</a>
         <p><a href="logout.php">Cerrar sesión</a></p>
