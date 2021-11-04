@@ -48,4 +48,55 @@ class RepositorioAlumno {
             return false;
         }
     }
+
+    public function get_all(Usuario $usuario){
+
+        $idUsuario = $usuario->getId();
+        $q = "SELECT dni, nombre, apellido, fecha_nac FROM alumnos WHERE id_usuario = ?";
+        try {
+            $query = self::$conexion->prepare($q);
+            $query->bind_param("i", $idUsuario);
+            $query->bind_result($dni, $nombre, $apellido, $fecha_nac);
+
+            if ($query->execute()) {
+                $listaAlumnos = array();
+                while ($query->fetch()) {
+                    $listaAlumnos [] = new Alumno($dni,$nombre,$apellido,$fecha_nac);
+                }
+                return $listaAlumnos;
+            }
+            return false;
+        } catch (Exception $e){
+            return false;
+        }
+
+    }
+
+
+    public function get_one($dni){
+
+        $idUsuario = $usuario->getId();
+        $q = "SELECT  nombre, apellido, fecha_nac FROM alumnos WHERE dni = ?";
+        try {
+            $query = self::$conexion->prepare($q);
+            $query->bind_param("i", $dni);
+            $query->bind_result($nombre, $apellido, $fecha_nac);
+
+            if ($query->execute()) {
+                if($query->)
+                
+                while ($query->fetch()) {
+                    $listaAlumnos [] = new Alumno($dni,$nombre,$apellido,$fecha_nac);
+                }
+                return $listaAlumnos;
+            }
+            return false;
+        } catch (Exception $e){
+            return false;
+        }
+
+    }
+
+
+    
 }

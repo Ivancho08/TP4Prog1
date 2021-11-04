@@ -32,7 +32,7 @@ class ControladorSesion
             $usuario->setId($id);
             session_start();
             $_SESSION['usuario'] = serialize($usuario);
-            return [ true, "Usuario creado correctamente" ];
+            return [ true, "Profesor creado correctamente" ];
         }
     }
 }

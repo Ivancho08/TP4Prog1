@@ -11,7 +11,7 @@
       <h1>Sistema Alta Alumnos</h1>
       </div>    
       <div class="text-center">
-        <h3>Login de usuario</h3>
+        <h3>Login de Profesor</h3>
         <?php
             if (isset($_GET['mensaje'])) {
                 echo '<div id="mensaje" class="alert alert-primary text-center">
@@ -24,7 +24,7 @@
             <input name="clave" type="text" class="form-control form-control-lg" placeholder="Contraseña"><br>
             <input type="submit" value="Ingresar" class="btn btn-primary">
         </form><br>
-        <p><a href="create.php">Crear nuevo usuario</a></p>
+        <p><a href="create.php">Crear nuevo Profesor</a></p>
       </div> 
     </body>
 </html>
