@@ -26,7 +26,7 @@ if (isset($_POST['usuario']) && isset($_POST['clave'])) {
       <h1>Sistema Alta Alumnos</h1>
       </div>    
       <div class="text-center">
-        <h3>Crear nuevo usuario</h3>
+        <h3>Crear nuevo Profesor</h3>
         <?php
             if (isset($_GET['mensaje'])) {
                 echo '<div id="mensaje" class="alert alert-primary text-center">
