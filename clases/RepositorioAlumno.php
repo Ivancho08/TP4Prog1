@@ -106,8 +106,6 @@ class RepositorioAlumno {
     }
 
 
-
-
     public function traerFechas(Usuario $usuario){
 
         $idUsuario = $usuario->getId();
