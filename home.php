@@ -36,9 +36,9 @@ if (isset($_SESSION['usuario'])) {
         ?>
         <h3> <?php echo $nomApe;?></h3>
         <h3>Listado de Alumnos</h3>
-        <table calss="table table-striped">
+        <table class="table table-striped">
             <tr>
-                <th>DNI</th><th>Nombre</th><th>Apellido</th><th>Modificar</th><th>Eliminar</th>
+                <th>DNI</th><th>Nombre</th><th>Apellido</th><th>Fecha de Nacimiento</th><th>Modificar</th><th>Eliminar</th>
             </tr>
         <?php
         if (count($alumnos)==0){
@@ -60,6 +60,7 @@ if (isset($_SESSION['usuario'])) {
         </table>
 
         <a class="btn btn-primary" href="crear_alumno.php">Crear Nuevo Alumno</a>
+        <a class="btn btn-primary" href="promedio.php">Calcular Promedio Edades</a>
         <p><a href="logout.php">Cerrar sesión</a></p>
       </div> 
     </body>

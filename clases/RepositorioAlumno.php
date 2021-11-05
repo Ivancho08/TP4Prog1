@@ -32,12 +32,13 @@ class RepositorioAlumno {
         $nombre = $alumno->getNombre();
         $apellido = $alumno->getApellido();
         $fecha_nac = $alumno->getFecha();
+        $profesor = $alumno->getProfesor();
 
-        $q = "INSERT INTO alumnos (dni, nombre, apellido, fecha_nac) VALUES (?, ?, ?, ?)";
+        $q = "INSERT INTO alumnos (dni, nombre, apellido, fecha_nac, profesor) VALUES (?, ?, ?, ?, ?)";
         try{
             $query = self::$conexion->prepare($q);
 
-            $query->bind_param("isss", $dni, $nombre, $apellido, $fecha_nac);
+            $query->bind_param("isssi", $dni, $nombre, $apellido, $fecha_nac, $profesor);
 
             if ($query->execute()){
                 return self::$conexion->insert_id;
@@ -52,7 +53,7 @@ class RepositorioAlumno {
     public function get_all(Usuario $usuario){
 
         $idUsuario = $usuario->getId();
-        $q = "SELECT dni, nombre, apellido, fecha_nac FROM alumnos WHERE id_usuario = ?";
+        $q = "SELECT dni, nombre, apellido, fecha_nac FROM alumnos WHERE profesor = ?";
         try {
             $query = self::$conexion->prepare($q);
             $query->bind_param("i", $idUsuario);
@@ -75,7 +76,7 @@ class RepositorioAlumno {
 
     public function get_one($dni){
 
-        $idUsuario = $usuario->getId();
+        
         $q = "SELECT  nombre, apellido, fecha_nac FROM alumnos WHERE dni = ?";
         try {
             $query = self::$conexion->prepare($q);
@@ -83,12 +84,9 @@ class RepositorioAlumno {
             $query->bind_result($nombre, $apellido, $fecha_nac);
 
             if ($query->execute()) {
-                if($query->)
-                
-                while ($query->fetch()) {
-                    $listaAlumnos [] = new Alumno($dni,$nombre,$apellido,$fecha_nac);
+                if($query->fetch()){
+                    return new Alumno ($dni,$nombre,$apellido,$fecha_nac);
                 }
-                return $listaAlumnos;
             }
             return false;
         } catch (Exception $e){
@@ -98,5 +96,38 @@ class RepositorioAlumno {
     }
 
 
-    
+    public function delete (Alumno $alumno){
+
+        $n = $alumno->getDni();
+        $q = "DELETE FROM alumnos WHERE dni = ?";
+        $query = self::$conexion->prepare($q);
+        $query->bind_param("i", $n);
+        return ($query->execute());
+    }
+
+
+
+
+    public function traerFechas(Usuario $usuario){
+
+        $idUsuario = $usuario->getId();
+        $q = "SELECT fecha_nac FROM alumnos WHERE profesor = ?";
+        try {
+            $query = self::$conexion->prepare($q);
+            $query->bind_param("i", $idUsuario);
+            $query->bind_result($fecha_nac);
+
+            if ($query->execute()) {
+                $listaFechas = array();
+                while ($query->fetch()) {
+                    $listaFechas [] = $fecha_nac;
+                }
+                return $listaFechas;
+            }
+            return false;
+        } catch (Exception $e){
+            return false;
+        }
+
+    }
 }
