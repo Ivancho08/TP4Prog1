@@ -50,4 +50,8 @@ class Alumno
         $this->profesor = $p;
     }
 
+    public function modificar ($nom){
+        $this->nombre = $nom;
+    }
+
 }

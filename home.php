@@ -48,7 +48,7 @@ if (isset($_SESSION['usuario'])) {
             $n = $unAlumno->getDni();
             echo '<tr>';
             echo "<td>$n</td>";
-            echo "<td>".$unAlumno->getNombre()."</td>";
+            echo "<td id='nombre-$n'>".$unAlumno->getNombre()."</td>";
             echo "<td>".$unAlumno->getApellido()."</td>";
             echo "<td>".$unAlumno->getFecha()."</td>";
             echo "<td><button type='button' onclick='modificar($n)'>Modificar</button></td>";
@@ -58,10 +58,52 @@ if (isset($_SESSION['usuario'])) {
         }
         ?>
         </table>
-
+        <br>
+        <div id="operacion">
+            <h3 id="tipo_operacion">Operacion</h3>
+            <input type="hidden" id="tipo">
+            <input type="hidden" id="dni">
+            <label for="nombre">Nombre del alumno: </label>
+            <input type="text" id="nombre"><br>
+            <button type="button" onclick="operacion()">Realizar Cambio</button>
+        </div>
+        <hr>
         <a class="btn btn-primary" href="crear_alumno.php">Crear Nuevo Alumno</a>
         <a class="btn btn-primary" href="promedio.php">Calcular Promedio Edades</a>
         <p><a href="logout.php">Cerrar sesión</a></p>
-      </div> 
+      </div>
+      
+      <script>
+        function operacion(){
+          var dni = document.querySelector('#dni').value;
+          var nombre = document.querySelector('#nombre').value;
+          var cadena = "dni="+dni+"&nombre="+nombre;
+
+          var solicitud = new XMLHttpRequest();
+
+          solicitud.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+              var respuesta = JSON.parse(this.responseText);
+              var identificador = "#nombre-" + respuesta.dni;
+              var celda = document.querySelector(identificador);
+
+              if(respuesta.resultado == "OK"){
+                celda.innerHTML = respuesta.nombre;
+              } else {
+                alert(respuesta.resultado);
+              }
+            }
+          };
+
+          solicitud.open("POST", "operacion.php", true);
+          solicitud.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          solicitud.send(cadena);
+        }
+
+        function modificar(dni){
+          document.querySelector('#dni').value = dni;
+          document.querySelector('#nombre').focus();
+        }
+      
     </body>
 </html>

@@ -128,4 +128,20 @@ class RepositorioAlumno {
         }
 
     }
+
+    public function actualizarNombre (Alumno $alumno){
+
+        $d = $alumno->getDni();
+        $n = $alumno->getNombre();
+
+        $q = "UPDATE alumnos SET nombre = ? WHERE dni = ?";
+
+        $query = self::$conexion->prepare($q);
+        $query->bind_param("si", $n, $d);
+
+        return $query->execute();
+
+    }
+
+
 }
